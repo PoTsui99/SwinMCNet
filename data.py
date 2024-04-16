@@ -145,7 +145,7 @@ class SalObjDataset(data.Dataset):
     def __getitem__(self, index):
         image  = self.rgb_loader(self.images[index])
         t      = self.rgb_loader(self.ts[index])
-        gt     = self.binary_loader(self.gts[index])
+        gt     = self.binary_loader(self.gts[index])  # 单通道灰度图(0-1)
         body   = self.binary_loader(self.bodys[index])
         detail = self.binary_loader(self.details[index])
 
@@ -275,12 +275,12 @@ class test_dataset:
     def load_data(self):
         image = self.rgb_loader(self.images[self.index])
         shape = image.size
-        image = self.img_transform(image).unsqueeze(0)
+        image = self.img_transform(image).unsqueeze(0)  # 增加batch维度?
 
         t = self.rgb_loader(self.ts[self.index])
         t = self.t_transform(t).unsqueeze(0)
 
-        gt    = self.binary_loader(self.gts[self.index])
+        gt    = self.binary_loader(self.gts[self.index])  # 单纯的totensor() 
         
         name = self.images[self.index].split('/')[-1]
 

@@ -1,3 +1,5 @@
+# loss function: 与 GT 采用 BCE + SSIM + IoU loss
+#                与 body 和 skeleton 采用 BCE + SSIM
 import os
 import torch
 import torch.nn as nn
